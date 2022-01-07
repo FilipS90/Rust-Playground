@@ -8,10 +8,9 @@ fn main() {
     }
 
     loops_func();
-
     values_from_loops(5);
-
     withwhile();
+    loop_through_array();
 }
 
 fn loops_func(){
@@ -63,4 +62,18 @@ fn withwhile() -> u32 {
     println!("We have liftoff !");
 
     return var;
+}
+
+fn loop_through_array() {
+    let arr = [1,2,3,4,5];
+    // let mut index = 0;
+
+    // while index < 5 {
+    //     println!("For index of {}, the value in array is {}", index, arr[index]);
+    //     index += 1;
+    // }
+
+    for element in arr {
+        println!("Current element in iteration {}", element);
+    }
 }
