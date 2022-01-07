@@ -54,7 +54,6 @@ fn values_from_loops(a: u32) -> u16 {
 
 fn withwhile() -> u32 {
     let mut var = 5;
-    const name: String = "Filip";
 
     while var != 0 {
         println!("{}", var);
