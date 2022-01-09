@@ -35,9 +35,3 @@ fn first_word (s: &String) -> &str {
 
     &s[..]
 }
-
-fn second_word(s: &String) -> &str {
-    let bytes = s.as_bytes();
-
-
-}
