@@ -1,4 +1,5 @@
 use std::io;
+use rand::Rng;
 
 fn main() {
     let a = [1, 2, 3, 4, 5];
@@ -6,6 +7,8 @@ fn main() {
     println!("Please enter an array index.");
 
     let mut index = String::new();
+
+    let num = rand::thread_rng().gen_range(1..5);
 
     io::stdin()
         .read_line(&mut index)

@@ -10,7 +10,9 @@ fn main() {
 
     let word = String::from("Beograde Dobro Jutro");
     let first_word = first_word(&word);
-    print!("{}", first_word);
+    println!("{}", first_word);
+
+    let q = built_to_work(&String::from("a"));
 }
 
 fn nesto(){
@@ -24,7 +26,7 @@ fn nesto(){
     let _r3 = &mut s; // no problem
 }
 
-fn first_word (s: &String) -> &str {
+fn first_word (s: &str) -> &str {
     let bytes = s.as_bytes();
 
     for (i, &element) in bytes.iter().enumerate() {
@@ -34,4 +36,9 @@ fn first_word (s: &String) -> &str {
     }
 
     &s[..]
+}
+
+fn built_to_work (s: &String) -> &str {
+    let x = &s[..s.len()];
+    x
 }
