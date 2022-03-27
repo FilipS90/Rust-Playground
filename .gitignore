@@ -7,7 +7,7 @@ debug/
 
 # Other files and folders
 .settings/
-.json
+.json/
 
 # Executables
 *.swf
