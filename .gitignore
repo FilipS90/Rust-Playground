@@ -7,13 +7,13 @@ debug/
 
 # Other files and folders
 .settings/
+.json
 
 # Executables
 *.swf
 *.air
 *.ipa
 *.apk
-*.json
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important
