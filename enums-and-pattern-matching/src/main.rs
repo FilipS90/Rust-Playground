@@ -1,79 +1,89 @@
-use std::option;
-
 fn main() {
-    let four = IpAddressKind::V4(100,5,10,95);
-
-    let nothing = Message::Quit;
-
-    let some_number = Some(1235);
-    let real_number = some_number.unwrap_or(0);
-    let num = 23;
-    let sum = real_number + num;
-
-    println!("{:?}", sum);
-
+    let four = IpAddrKind::V4(127, 0, 0, 1);
     println!("{:?}", four);
-    println!("{:?}", nothing);
 
-    let message = Message::Write(String::from("Blah"));
-    message.call();
+    let six = IpAddrKind::V6(String::from("::1"));
+    println!("{:?}", six);
 
-    let coin_val = value_in_cents(Coin::Penny);
+    let m = Message::Write(String::from("Hello there"));
+    m.call();
 
-    println!("{:?}", coin_val);
+    let some_number = Some(5);
+    let some_string = Some("hi");
+    let none_string: Option<u32> = None;
 
-    let dice_roll = 5;
+    let x = 5;
+    let y = Some(3);
+    let sum: u32 = {
+        x + match y {
+            None => 0,
+            Some(i) => i,
+        }
+    };
+    println!("The sum is {}", sum);
 
-    match dice_roll {
-        3 => add_fancy_hat(),
-        7 => take_off_hat(),
-        _ => move_and_reroll(),
+    let quarter = Coin::Quarter(UsState::Nevada);
+
+    println!("{}", value_in_cents(quarter));
+
+    let dice_roll: u8 = 2;
+    let roll = match dice_roll {
+        3 => println!("You got 3 !"),
+        7 => println!("You got 7 !"),
+        _ => (),
+    };
+
+    let config_max = Some(3u8);
+    if let Some(max) = config_max {
+        println!("The maximum is configured to be {}", max);
     }
 
 }
 
 #[derive(Debug)]
-enum IpAddressKind {
-    V4(u8, u8, u8, u8)
-}
-#[derive(Debug)]
 enum Message {
     Quit,
-    Move { x: i32, y: i32 },
+    Move {x: i32, y: i32},
     Write(String),
-    ChangeColor(i32, i32, i32),
+    ChangeColor(i32,i32,i32),
 }
 
 impl Message {
     fn call(&self) {
-        println!("{:?}", self);
+        println!("{:?}", &self);
     }
+}
+
+#[derive(Debug)]
+enum IpAddrKind {
+    V4(u8, u8, u8, u8),
+    V6(String),
 }
 
 enum Coin {
     Penny,
     Nickel,
     Dime,
-    Quarter,
+    Quarter(UsState),
+}
+#[derive(Debug)]
+enum UsState {
+    Alabama,
+    Alaska,
+    Nevada
 }
 
 fn value_in_cents(coin: Coin) -> u8 {
     match coin {
-        Coin::Penny => 1,
+        Coin::Penny => {
+            println!("Lucky penny !");
+            1
+        },
         Coin::Nickel => 5,
         Coin::Dime => 10,
-        Coin::Quarter => 25,
+        Coin::Quarter(state) => {
+            println!("This coin is from {:?} series", state);    
+            25
+        }
     }
-}
-
-fn add_fancy_hat() {
-    println!("Added fancy hat!");
-}
-
-fn take_off_hat(){
-    println!("Took off fancy hat");
-}
-
-fn move_and_reroll(){
-    println!("Move and then reroll");
 }
